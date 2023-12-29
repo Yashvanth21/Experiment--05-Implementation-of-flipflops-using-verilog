@@ -1,5 +1,8 @@
-# Experiment--05-Implementation-of-flipflops-using-verilog
-### AIM: To implement all the flipflops using verilog and validating their functionality using their functional tables
+### Name: Yashvanth K
+### Register number:23011613
+## Experiment 05 Implementation of flipflops using verilog
+### AIM: 
+To implement all the flipflops using verilog and validating their functionality using their functional tables
 ### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
 ### SOFTWARE REQUIRED:   Quartus prime
 ### THEORY 
@@ -102,39 +105,101 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-/* write all the steps invloved */
+Step 1: Open Quartus II and select new project and choose the file location.
 
+Step 2: Module Declaration. Module should have the file name.
 
+Step 3: Input-Output Delecaration.
+
+Step 4: Use assign declaration and wire to define the functionality of logic circuits.
+
+Step 5: At the end give endmodule.
+
+Step 6: Run the program and choose RTL viewer to get RTL realization.
 
 ### PROGRAM 
-/*
-Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
-
-
-
-
-
-
+Developed by:Ashwath M
+#### SR flipflops:
+```
+module flop(S,R,clk,Q,Qbar);
+input S,R,clk;
+output reg Q;
+output reg Qbar;
+initial Q=0;
+initial Qbar=1;
+always @(posedge clk)
+begin
+Q=S|((~R)&Q);
+Qbar=R|((~S)&(Qbar));
+end
+endmodule
+```
+#### JK flipflops:
+```
+module jk(q,qbar,k,j,clk);
+input j,k,clk;
+output q,qbar;
+wire nand1_out;
+wire nand2_out;
+nand(nand1_out,j,clk,qbar);
+nand(nand2_out,k,clk,q);
+nand(q,nand1_out,qbar,qbar);
+nand(qbar,nand2_out,q);
+endmodule
+```
+#### T flipflops:
+```
+module tff(t,qbar,q,clk);
+input t,clk;
+output q,qbar;
+wire n1,n2;
+nand(n1,t,clk,qbar);
+nand(n2,clk,t,q);
+nand(q,n1,qbar);
+nand(qbar,n2,q);
+endmodule
+```
+#### D flipflops:
+```
+module d(q,qbar,d1,clk);
+input d1,clk;
+output q,qbar;
+wire n1;
+wire n2;
+not(x,d1);
+nand(n1,clk,d1);
+nand(n2,clk,x);
+nand(q,n2,qbar);
+nand(qbar,n1,q);
+endmodule 
+```
 ### RTL LOGIC FOR FLIPFLOPS 
+#### SR flipflops:
+![exp5 rtl](https://github.com/Ashwathm12/Experiment--05-Implementation-of-flipflops-using-verilog/assets/138849225/78b9c34f-75ad-4a4a-85e6-3cd5bbff3d0c)
 
+#### JK flipflops:
+![jk](https://github.com/Ashwathm12/Experiment--05-Implementation-of-flipflops-using-verilog/assets/138849225/6ad97145-6434-40fc-b48f-9d76d1b42b1c)
 
+#### T flipflops:
+![t](https://github.com/Ashwathm12/Experiment--05-Implementation-of-flipflops-using-verilog/assets/138849225/aa361a26-9c83-412d-b6f5-c5a66f4ff3ff)
 
-
-
-
-
+#### D flipflops:
+![d](https://github.com/Ashwathm12/Experiment--05-Implementation-of-flipflops-using-verilog/assets/138849225/6d63d6bc-5e0e-4434-916e-028e54419e5d)
 
 
 ### TIMING DIGRAMS FOR FLIP FLOPS 
+#### SR flipflops:
+![sr](https://github.com/Ashwathm12/Experiment--05-Implementation-of-flipflops-using-verilog/assets/138849225/228632de-17d3-4508-88c7-b4fcb954ada1)
 
+#### JK flipflops:
+![jk](https://github.com/Ashwathm12/Experiment--05-Implementation-of-flipflops-using-verilog/assets/138849225/fef987f3-81a9-4d13-b6c7-a7c7c1d1dbc5)
 
+#### T flipflops:
+![t](https://github.com/Ashwathm12/Experiment--05-Implementation-of-flipflops-using-verilog/assets/138849225/259224e3-7e08-4474-bb49-013f028f5b0f)
 
-
-
-
+#### D flipflops:
+![d](https://github.com/Ashwathm12/Experiment--05-Implementation-of-flipflops-using-verilog/assets/138849225/02804de3-b665-4d43-bc45-2d69b47ed26e)
 
 
 ### RESULTS 
+Implementation-of-flipflops-using-verilog successfully completed.
